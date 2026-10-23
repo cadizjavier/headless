@@ -1,45 +1,40 @@
 # headless
 
-Provision an Apple Silicon Mac mini for development: Homebrew tools, symlinked
-dotfiles, coding agents, and a readiness check. Idempotent and safe to rerun.
+Provision an Apple Silicon Mac mini: Homebrew tools, symlinked dotfiles, coding
+agents, and a health check. Idempotent and safe to rerun.
 
 ## Setup
 
-Install Command Line Tools and wait for the installer to finish. Skip this if
-Xcode is already installed.
-
 ```sh
-xcode-select --install
+xcode-select --install   # first; wait for it to finish
 ```
 
-Then clone and run:
-
 ```sh
-git clone YOUR_REPOSITORY_URL ~/.headless
+git clone git@github.com:cadizjavier/headless.git ~/.headless
 cd ~/.headless
 ./bootstrap.sh
 ./bootstrap.sh doctor
 ```
 
-Bootstrap replaces files at the managed dotfile paths, so edit `dotfiles/`
-rather than your home directory.
-
 ## Commands
 
 ```sh
-./bootstrap.sh         # Install missing tools and link configuration
-./bootstrap.sh update  # Upgrade tools and link configuration
-./bootstrap.sh doctor  # Check tools, links, and shell configuration
+./bootstrap.sh         # install tools and link config
+./bootstrap.sh update  # upgrade tools and link config
+./bootstrap.sh doctor  # check tools, links, and shell config
 ```
 
-After pulling changes: `git pull --ff-only && ./bootstrap.sh update`.
+## Sign in
 
-`doctor` exits non-zero on problems.
+```sh
+gh auth login
+claude auth login
+codex login
+```
 
-Tools are declared in `install/Brewfile`; Claude Code and Codex are installed by
-their vendor scripts via `install/agents.sh`. Open a new shell after changes.
+## Manual
 
-Sign in with `gh auth login`, `claude auth login`, and `codex login`.
-
-Xcode, simulator runtimes (`xcodes`), T3 Code, SSH, Screen Sharing, power
-settings, and code signing remain manual.
+- Xcode and simulator runtimes (`xcodes`)
+- Ghostty (config is linked), T3 Code, and other GUI apps
+- SSH keys, Screen Sharing, power settings
+- Apple ID and code signing

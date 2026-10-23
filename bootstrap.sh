@@ -12,7 +12,7 @@ while [ -L "$_self" ]; do
   esac
 done
 ROOT="$(cd -- "$(dirname -- "$_self")" && pwd -P)"
-DOTFILES=(.zshrc .zshenv .gitconfig .config/git/ignore)
+DOTFILES=(.zshrc .zshenv .gitconfig .config/git/ignore 'Library/Application Support/com.mitchellh.ghostty/config')
 
 log() { printf '[headless] %s\n' "$*"; }
 die() {
