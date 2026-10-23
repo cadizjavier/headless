@@ -1,0 +1,21 @@
+# Tools installed on the headless Mac.
+tap "xcodesorg/made"
+
+# Provisioning and iOS development.
+brew "git"
+brew "gh"
+brew "mise"
+brew "xcodesorg/made/xcodes"
+
+# CLI search and interactive shell tools.
+brew "pure"
+brew "zsh-autosuggestions"
+brew "zsh-syntax-highlighting"
+brew "fzf"
+brew "fd"
+brew "ripgrep"
+
+# Terminal agent sessions.
+brew "herdr"
+
+# Claude Code and Codex are installed by their vendor scripts; see install/agents.sh.
