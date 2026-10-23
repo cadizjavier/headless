@@ -10,7 +10,7 @@ xcode-select --install   # first; wait for it to finish
 ```
 
 ```sh
-git clone git@github.com:cadizjavier/headless.git ~/.headless
+git clone https://github.com/cadizjavier/headless.git ~/.headless
 cd ~/.headless
 ./bootstrap.sh
 ./bootstrap.sh doctor
