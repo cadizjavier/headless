@@ -56,5 +56,5 @@ agents, and a health check. Idempotent and safe to rerun.
    codex login
    ```
 
-8. **By hand** — Xcode and simulator runtimes, T3 Code, Screen Sharing, power
-   settings, Apple ID, code signing.
+8. **By hand** — Xcode and simulator runtimes (`xcodes`), T3 Code, Screen
+   Sharing, power settings, Apple ID, code signing.

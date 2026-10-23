@@ -4,6 +4,7 @@
 brew "git"
 brew "gh"
 brew "mise"
+brew "xcodes"
 
 # CLI search and interactive shell tools.
 brew "pure"
