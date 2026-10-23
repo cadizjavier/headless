@@ -89,18 +89,11 @@ install_tools() {
 }
 
 doctor() {
-  local failures=0 link_failures=0 file tool available_kb required_kb
-  local min_free_gb="${MIN_FREE_GB:-60}"
-  case "$min_free_gb" in
-    *[!0-9]*) die 'MIN_FREE_GB must be a nonnegative integer.' ;;
-  esac
-  available_kb="$(df -Pk "$HOME" | awk 'END {print $4}')"
-  required_kb=$((10#$min_free_gb * 1024 * 1024))
+  local failures=0 link_failures=0 file tool
 
   log "Host: $(hostname -s)"
   log "macOS: $(sw_vers -productVersion) ($(sw_vers -buildVersion))"
   log "Architecture: $(uname -m)"
-  log "Free disk space: $(awk -v kb="$available_kb" 'BEGIN {printf "%.1f GiB", kb / 1048576}')"
   if command -v brew >/dev/null 2>&1; then
     log "Homebrew: $(HOMEBREW_NO_AUTO_UPDATE=1 brew --version | head -n 1)"
     if HOMEBREW_NO_AUTO_UPDATE=1 brew bundle check --no-upgrade --file="$ROOT/install/Brewfile" >/dev/null 2>&1; then
@@ -147,13 +140,6 @@ doctor() {
     failures=$((failures + 1))
   fi
 
-  if [ "$available_kb" -ge "$required_kb" ]; then
-    log "OK: at least $min_free_gb GiB free on the home volume"
-  else
-    log "LOW DISK: less than $min_free_gb GiB free on the home volume"
-    failures=$((failures + 1))
-  fi
-
   log 'Manage Xcode/runtimes manually. Verify SSH access, reboot recovery, builds, and signing separately.'
   [ "$failures" -eq 0 ] || die "$failures readiness check(s) failed."
   log 'Base setup checks passed.'
@@ -165,11 +151,10 @@ Usage: ./bootstrap.sh [COMMAND]
 
   bootstrap  Install Homebrew if missing, install tools, link configuration (default)
   update     Upgrade tools and link configuration
-  doctor     Show machine summary and check tools, links, shell config, and disk space
+  doctor     Check tools, links, and shell configuration
   help       Show this help
 
 Xcode and simulator runtimes are managed manually using the installed xcodes CLI.
-Override doctor's disk threshold with MIN_FREE_GB=60.
 EOF
 }
 

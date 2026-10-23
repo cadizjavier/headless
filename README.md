@@ -29,13 +29,12 @@ rather than your home directory.
 ```sh
 ./bootstrap.sh         # Install missing tools and link configuration
 ./bootstrap.sh update  # Upgrade tools and link configuration
-./bootstrap.sh doctor  # Check tools, links, shell config, and disk space
+./bootstrap.sh doctor  # Check tools, links, and shell configuration
 ```
 
 After pulling changes: `git pull --ff-only && ./bootstrap.sh update`.
 
-`doctor` exits non-zero on problems and requires 60 GiB free by default; override
-with `MIN_FREE_GB=30 ./bootstrap.sh doctor`.
+`doctor` exits non-zero on problems.
 
 Tools are declared in `install/Brewfile`; Claude Code and Codex are installed by
 their vendor scripts via `install/agents.sh`. Open a new shell after changes.
