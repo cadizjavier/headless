@@ -85,7 +85,7 @@ install_tools() {
   fi
   "$ROOT/install/agents.sh"
   apply_dotfiles
-  log 'Setup complete. Run ./bootstrap.sh doctor. Manage Xcode and runtimes manually with xcodes.'
+  log 'Setup complete. Run ./bootstrap.sh doctor. Manage Xcode and runtimes manually.'
 }
 
 doctor() {
@@ -154,7 +154,7 @@ Usage: ./bootstrap.sh [COMMAND]
   doctor     Check tools, links, and shell configuration
   help       Show this help
 
-Xcode and simulator runtimes are managed manually using the installed xcodes CLI.
+Xcode and simulator runtimes are managed manually.
 EOF
 }
 
