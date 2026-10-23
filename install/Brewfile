@@ -1,5 +1,4 @@
 # Tools installed on the headless Mac.
-tap "xcodesorg/made"
 
 # Provisioning and iOS development.
 brew "git"
