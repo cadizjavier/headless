@@ -24,7 +24,8 @@ run_installer() {
         PATH="$HOME/.local/bin:$PATH"
         # Never prompt or launch the agent in a provisioning run.
         export CODEX_NON_INTERACTIVE=1
-        "$interpreter" "$installer"
+        # The subshell's || handler disables errexit, so check the installer explicitly.
+        "$interpreter" "$installer" || exit $?
         exit 0
       fi
       log "No installer at $url; trying the next source."
